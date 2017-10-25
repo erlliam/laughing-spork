@@ -1,5 +1,3 @@
 # laughing-spork
 
-
-Test
-awdassadsa
+My collection of my python code.
