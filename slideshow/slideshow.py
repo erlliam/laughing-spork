@@ -1,6 +1,12 @@
 from PIL import Image
-import os
+import os, sys, time
 
-picture = Image.open("/home/mint/Pictures/test/1.jpeg")
-picture.thumbnail((1280, 720))
-picture.show()
+size = (640, 480)
+folder = os.path.abspath("images")
+
+for image in os.listdir(folder):
+	p = Image.open("{}/{}".format(folder, image))
+	p.thumbnail(size)
+	p.show()
+	time.sleep(2)
+
