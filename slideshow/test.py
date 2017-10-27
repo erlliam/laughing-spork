@@ -1,8 +1,11 @@
 from tkinter import Tk, Label, Button
+import PIL
+from PIL import *
 
 class MainGui:
-	def __init__(self, master):
+	def __init__(self, master, picture):
 		self.current = 0
+		self.picture = picture
 		self.master = master
 		master.title("Python slideshow")
 
@@ -15,6 +18,9 @@ class MainGui:
 		self.forward_button = Button(master, text=">", command=self.forward)
 		self.forward_button.pack()
 
+		self.image = Label(master, image=self.picture)
+		self.image.pack(side="bottom", fill="both", expand="yes")
+
 	def back(self):
 		self.current = self.current - 1
 		print(self.current)
@@ -23,7 +29,11 @@ class MainGui:
 		self.current = self.current + 1
 		print(self.current)
 
+	def picture(self, picture):
+		self.picture = picture
+
 
 root = Tk()
-main_window = MainGui(root)
+test = ImageTk.PhotoImage(Image.open("images/logo.png"))
+main_window = MainGui(root, test)
 root.mainloop()
