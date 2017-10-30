@@ -5,10 +5,11 @@ from PIL import ImageTk, Image
 size = (640, 480)
 
 folder = "images/"
-test = os.listdir(folder)
+files = os.listdir(folder)
 
 class MainGui:
     def __init__(self, root):
+        self.index = -1
         self.root = root
         root.title("Slideshow")
 
@@ -22,13 +23,18 @@ class MainGui:
         self.forward_button.pack(side=RIGHT)
 
     def back(self):
-        pass
-
+        if self.index - 1 >= 0:
+            self.index = self.index - 1
+            self.change_picture("{}{}".format(folder, files[self.index]))
     def forward(self):
-        pass
+        if self.index + 1 <= len(files) - 1:
+            self.index = self.index + 1
+            self.change_picture("{}{}".format(folder, files[self.index]))
 
     def change_picture(self, picture):
-        picture = ImageTk.PhotoImage(Image.open(picture))
+        picture = Image.open(picture)
+        picture.thumbnail(size)
+        picture = ImageTk.PhotoImage(picture)
         self.image.config(image=picture)
         self.image.image = picture
 
@@ -36,6 +42,4 @@ class MainGui:
 root = Tk()
 
 window = MainGui(root)
-print(test[0])
-print(len(test)-1)
 root.mainloop()
