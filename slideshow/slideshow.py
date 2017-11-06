@@ -14,18 +14,18 @@ class MainGui:
         root.title("Slideshow")
 
         self.back_button = Button(root, text="<--", command=self.back)
-        self.back_button.grid(row=1)
 
         self.forward_button = Button(root, text="-->", command=self.forward)
-        self.forward_button.grid(row=1)
         
         self.select_directory = Button(root, text="Select directory", command=self.directory)
-        self.select_directory.grid(row=1) 
 
         self.image = Label(root)
-        self.image.config()
-        self.image.grid(row=0)
 
+
+        self.back_button.pack(side=LEFT)
+        self.select_directory.pack(side=LEFT)
+        self.forward_button.pack(side=LEFT)
+        self.image.pack(side=LEFT)
     def back(self):
         if self.index - 1 >= 0:
             self.index = self.index - 1
