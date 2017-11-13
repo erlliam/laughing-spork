@@ -1,0 +1,17 @@
+make select directory functional
+fix layout
+
+===
+===
+===
+-+_
+
+= is picture
+- is previous
++ is select directory
+_ is next
+
+add a text that says img x/xx
+x is current img, xx is amount of imgs
+
+
