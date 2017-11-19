@@ -1,15 +1,15 @@
 from tkinter import *
+from tkinter import filedialog
 import os
 from PIL import ImageTk, Image
 
 size = (640, 480)
 
-folder = "images/"
-files = os.listdir(folder)
+folder = ""
+
 
 class MainGui:
     def __init__(self, root):
-        self.index = -1
         self.root = root
         root.title("Slideshow")
 
@@ -29,15 +29,16 @@ class MainGui:
     def back(self):
         if self.index - 1 >= 0:
             self.index = self.index - 1
-            self.change_picture("{}{}".format(folder, files[self.index]))
+            self.change_picture("{}/{}".format(self.folder, self.files[self.index]))
     def forward(self):
-        if self.index + 1 <= len(files) - 1:
+        if self.index + 1 <= len(self.files) - 1:
             self.index = self.index + 1
-            self.change_picture("{}{}".format(folder, files[self.index]))
+            self.change_picture("{}/{}".format(self.folder, self.files[self.index]))
 
     def directory(self):
-        pass
-
+        self.folder = filedialog.askdirectory()
+        self.files = os.listdir(self.folder)
+        self.index = -1
     def change_picture(self, picture):
         picture = Image.open(picture)
         picture.thumbnail(size)
